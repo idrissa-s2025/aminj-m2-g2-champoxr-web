@@ -49,6 +49,26 @@ bâtiments et sol préservés, textures limitées à 2048 px. Résultat : 0,85 m
 affichés. Le sol ne dépend plus des UV du maillage : le plan est projeté depuis la position
 (voir `outils/cuire_sol.py` pour le régénérer).
 
+## L'agent IA : où tout se trouve
+
+L'agent passe toujours par le relais : le client (casque ou navigateur) envoie une question et
+un contexte, le relais ajoute la clé et les consignes, puis appelle OpenAI.
+
+| Ce qui | Fichier | Ce que le groupe y fait |
+|---|---|---|
+| Appel à OpenAI, clé, modèle, plafonds | `relais/serveur.mjs` | rien en principe ; modèle et plafonds se règlent dans `relais/.env` |
+| Clé et réglages (`OPENAI_API_KEY`, `OPENAI_MODEL`, `MAX_APPELS_JOUR`) | `relais/.env`, copié de `relais/env.exemple` | coller la clé ; jamais dans Git |
+| **Instruction** de l'agent (message système) | `relais/consignes_agent.md` | **à réécrire** : rôle, ce qu'il dit, ce qu'il ne dit jamais, forme |
+| Côté page : envoi de la question et affichage de la réponse | `web/main.js`, bloc « Agent » (`fetch('/api/chat')`) | brancher la voix, l'incarnation |
+| **Connaissances** transmises : nom, numéro de plan, niveaux du bâtiment sélectionné | `web/donnees/campus_semantique.json`, contexte construit dans `web/main.js` (`const contexte`) | enrichir ou filtrer |
+| Traces xAPI envoyées au relais | `tracer()` dans `web/main.js` | choisir les verbes |
+| Journal des échanges et des traces | `relais/journal/*.jsonl` | lire pour l'évaluation et le débriefing |
+
+Le relais relit `consignes_agent.md` à chaque question : une modification s'applique sans
+redémarrer. Les connaissances ne sont pas « apprises » par le modèle : elles lui sont
+transmises à chaque échange dans le contexte. Ce qui n'est pas dans le contexte, l'agent doit
+dire qu'il ne le sait pas.
+
 ## Règles
 
 - **La clé OpenAI reste dans `relais/.env`.** Jamais dans `web/`, Git ou une capture.

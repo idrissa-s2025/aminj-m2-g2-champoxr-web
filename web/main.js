@@ -34,53 +34,62 @@ controles.maxPolarAngle = Math.PI * 0.47;
 controles.minDistance = 20;
 controles.maxDistance = 700;
 
-// Ciel physique (Preetham) et soleil de fin de matinee
-const ciel = new Sky();
-ciel.scale.setScalar(15000);
-Object.assign(ciel.material.uniforms, {});
-ciel.material.uniforms.turbidity.value = 4;
-ciel.material.uniforms.rayleigh.value = 1.2;
-ciel.material.uniforms.mieCoefficient.value = 0.004;
-ciel.material.uniforms.mieDirectionalG.value = 0.85;
-const directionSoleil = new THREE.Vector3().setFromSphericalCoords(1, THREE.MathUtils.degToRad(52), THREE.MathUtils.degToRad(215));
-ciel.material.uniforms.sunPosition.value.copy(directionSoleil);
-scene.add(ciel);
+// Ciel de jour : un dome qui suit la camera, degrade bleu, halo du soleil et nuages animes.
+// Le ciel physique (Preetham) ne sert qu'a l'eclairage d'ambiance des matieres.
+const directionSoleil = new THREE.Vector3().setFromSphericalCoords(1, THREE.MathUtils.degToRad(50), THREE.MathUtils.degToRad(215));
+const HORIZON = new THREE.Color('#cfe3f5');
+const preetham = new Sky();
+preetham.scale.setScalar(1000);
+Object.assign(preetham.material.uniforms.turbidity, { value: 3 });
+preetham.material.uniforms.rayleigh.value = 1.4;
+preetham.material.uniforms.sunPosition.value.copy(directionSoleil);
 const pmrem = new THREE.PMREMGenerator(renderer);
-const scenePourCiel = new THREE.Scene(); scenePourCiel.add(ciel.clone());
+const scenePourCiel = new THREE.Scene(); scenePourCiel.add(preetham);
 scene.environment = pmrem.fromScene(scenePourCiel).texture;
-scene.environmentIntensity = 0.5;
-scene.fog = new THREE.Fog(0xc9dcee, 1800, 7000);
-scene.add(nuages());
+scene.environmentIntensity = 0.55;
 
-scene.add(new THREE.HemisphereLight(0xe3efff, 0x7d8f62, 0.6));
-const soleil = new THREE.DirectionalLight(0xfff1dc, 2.6);
+const ciel = new THREE.Mesh(new THREE.SphereGeometry(9000, 48, 24), new THREE.ShaderMaterial({
+  side: THREE.BackSide, depthWrite: false, fog: false, toneMapped: false,
+  uniforms: { uTemps: { value: 0 }, uSoleil: { value: directionSoleil } },
+  vertexShader: `varying vec3 vDir; void main() { vDir = position;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+  fragmentShader: `varying vec3 vDir; uniform float uTemps; uniform vec3 uSoleil;
+    float h(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+    float bruit(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
+      return mix(mix(h(i), h(i + vec2(1, 0)), f.x), mix(h(i + vec2(0, 1)), h(i + vec2(1, 1)), f.x), f.y); }
+    float fbm(vec2 p) { float v = 0.0, a = 0.5; for (int i = 0; i < 6; i++) { v += a * bruit(p); p *= 2.03; a *= 0.5; } return v; }
+    void main() {
+      vec3 d = normalize(vDir);
+      float e = max(d.y, 0.0);
+      vec3 zenith = vec3(0.16, 0.42, 0.80), milieu = vec3(0.42, 0.66, 0.92), horizon = vec3(${HORIZON.r.toFixed(3)}, ${HORIZON.g.toFixed(3)}, ${HORIZON.b.toFixed(3)});
+      vec3 c = mix(horizon, milieu, smoothstep(0.0, 0.18, e));
+      c = mix(c, zenith, smoothstep(0.18, 0.75, e));
+      float s = max(dot(d, normalize(uSoleil)), 0.0);
+      c += vec3(1.0, 0.93, 0.78) * (pow(s, 8.0) * 0.25 + pow(s, 900.0) * 1.5);
+      if (d.y > 0.0) {
+        vec2 p = d.xz / (d.y + 0.12) * 1.6 + vec2(uTemps * 0.004, uTemps * 0.0015);
+        float n = fbm(p);
+        float couv = smoothstep(0.50, 0.72, n) * smoothstep(0.0, 0.10, d.y);
+        float ombre = smoothstep(0.55, 0.95, fbm(p + vec2(0.06, 0.04)));
+        vec3 blanc = mix(vec3(1.0), vec3(0.78, 0.82, 0.90), ombre * 0.7);
+        c = mix(c, blanc, couv * 0.92);
+      } else {
+        c = horizon;
+      }
+      gl_FragColor = vec4(c, 1.0);
+    }`,
+}));
+ciel.frustumCulled = false; ciel.renderOrder = -1;
+scene.add(ciel);
+scene.fog = new THREE.Fog(HORIZON, 700, 4200);
+
+scene.add(new THREE.HemisphereLight(0xdcebff, 0x80935f, 0.65));
+const soleil = new THREE.DirectionalLight(0xfff3e0, 2.8);
 soleil.castShadow = true;
 soleil.shadow.mapSize.set(4096, 4096);
 soleil.shadow.bias = -0.0004;
 soleil.shadow.normalBias = 0.4;
 scene.add(soleil, soleil.target);
-
-// Quelques nuages : des sprites doux, poses haut et loin
-function nuages() {
-  const c = document.createElement('canvas'); c.width = c.height = 256;
-  const x = c.getContext('2d');
-  for (let i = 0; i < 14; i++) {
-    const px = 50 + Math.random() * 156, py = 90 + Math.random() * 70, r = 30 + Math.random() * 45;
-    const g = x.createRadialGradient(px, py, 0, px, py, r);
-    g.addColorStop(0, 'rgba(255,255,255,0.85)'); g.addColorStop(1, 'rgba(255,255,255,0)');
-    x.fillStyle = g; x.fillRect(0, 0, 256, 256);
-  }
-  const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
-  const groupe = new THREE.Group();
-  for (let i = 0; i < 26; i++) {
-    const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false, fog: false, opacity: 0.9 }));
-    const a = Math.random() * Math.PI * 2, d = 900 + Math.random() * 1600;
-    s.position.set(Math.cos(a) * d, 260 + Math.random() * 260, Math.sin(a) * d);
-    s.scale.set(500 + Math.random() * 500, 180 + Math.random() * 120, 1);
-    groupe.add(s);
-  }
-  return groupe;
-}
 
 function redimensionner() {
   renderer.setSize(innerWidth, innerHeight, false);
@@ -165,6 +174,12 @@ maquette.traverse((o) => {
 const boite = new THREE.Box3().setFromObject(maquette);
 const centre = boite.getCenter(new THREE.Vector3());
 const rayonCampus = boite.getSize(new THREE.Vector3()).length() / 2;
+// Une prairie autour de la maquette, qui se fond dans la brume de l'horizon.
+const prairie = new THREE.Mesh(new THREE.CircleGeometry(6000, 64).rotateX(-Math.PI / 2),
+  new THREE.MeshStandardMaterial({ color: 0x8abc5e, roughness: 0.95 }));
+prairie.position.set(centre.x, boite.min.y - 0.6, centre.z);
+prairie.receiveShadow = false;
+scene.add(prairie);
 soleil.position.copy(centre).addScaledVector(directionSoleil, 450);
 soleil.target.position.copy(centre);
 Object.assign(soleil.shadow.camera, { left: -rayonCampus, right: rayonCampus, top: rayonCampus, bottom: -rayonCampus, far: 1400 });
@@ -224,7 +239,7 @@ for (const n of plan_) coeur.union(groupes.get(n).emprise);
 const centreCoeur = coeur.getCenter(new THREE.Vector3());
 const rayonCoeur = coeur.getSize(new THREE.Vector3()).setY(0).length() / 2;
 const vueAccueil = { cible: centreCoeur.clone(),
-  position: centreCoeur.clone().add(new THREE.Vector3(-0.45, 0.5, 0.74).normalize().multiplyScalar(rayonCoeur * 1.0)) };
+  position: centreCoeur.clone().add(new THREE.Vector3(-0.45, 0.24, 0.74).normalize().multiplyScalar(rayonCoeur * 1.05)) };
 camera.position.copy(vueAccueil.position);
 controles.target.copy(vueAccueil.cible);
 
@@ -432,6 +447,8 @@ renderer.setAnimationLoop(() => {
   const pouls = 1 + 0.08 * Math.sin(horloge.elapsedTime * 3);
   for (const g of pastillesSol) g.scale.setScalar(pouls);
   controles.update();
+  ciel.position.copy(camera.position);
+  ciel.material.uniforms.uTemps.value = horloge.elapsedTime;
   renderer.render(scene, camera);
   etiquettes.render(scene, camera);
 });
