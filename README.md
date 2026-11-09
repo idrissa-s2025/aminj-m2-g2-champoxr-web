@@ -13,8 +13,10 @@ portail, pas une formation.
 
 | Élément | Où | État |
 |---|---|---|
-| Maquette texturée du campus (glTF, compression Draco) | `web/modele/campus_champollion.glb` | fourni |
-| Sources Blender (hologramme et maquette, v05) | `blender/` | fourni |
+| Maquette texturée du campus, décimée (glTF Draco, 20 Mo, environ 300 000 triangles uniques) | `web/modele/campus_champollion.glb` | fourni |
+| Plan du sol cuit : gazon, enrobé, pavage, bords de chaussée, lignes médianes | `web/textures/sol_plan.jpg` | fourni |
+| Ciel, nuages, ombres, points de téléportation au pied des bâtiments | `web/main.js` | fourni |
+| Sources Blender (hologramme et maquette, version de travail du 23/09) | `blender/` | fourni |
 | Sémantique du campus : bâtiments, étages, locaux | `web/donnees/campus_semantique.json` | fourni, partagé avec G1 |
 | Scène three.js, vue orbitale, sélection, fiche du bâtiment | `web/main.js` | fourni |
 | Agent par le relais (texte) | `web/main.js` et `relais/` | fourni, fonction didactique à écrire |
@@ -35,6 +37,18 @@ progression, l'évaluation et le débriefing : voir [`docs/A_CONSTRUIRE.md`](doc
 
 Les bibliothèques three.js sont chargées depuis jsDelivr, version figée 0.169.0.
 
+Pastilles orange au sol : un clic vous y téléporte à hauteur d'œil. « Retour à l'accueil »
+revient à la vue d'ensemble. Sur un PC modeste, ouvrir `http://localhost:8787/?leger`
+(sans ombres).
+
+## Budget de polygones
+
+La maquette d'origine (35 Mo, 2,3 millions de triangles affichés) a été décimée par
+`outils/decimer.mjs` (gltf-transform, meshoptimizer) : arbres et mobilier fortement simplifiés,
+bâtiments et sol préservés, textures limitées à 2048 px. Résultat : 0,85 million de triangles
+affichés. Le sol ne dépend plus des UV du maillage : le plan est projeté depuis la position
+(voir `outils/cuire_sol.py` pour le régénérer).
+
 ## Règles
 
 - **La clé OpenAI reste dans `relais/.env`.** Jamais dans `web/`, Git ou une capture.
@@ -46,7 +60,9 @@ Les bibliothèques three.js sont chargées depuis jsDelivr, version figée 0.169
 
 ```
 web/index.html, style.css, main.js   la page
-web/modele/                          la maquette glTF
+web/modele/                          la maquette glTF décimée
+web/textures/                        plan du sol et grains
+outils/                              decimer.mjs, cuire_sol.py
 web/donnees/                         la sémantique
 relais/                              serveur.mjs, consignes_agent.md, env.exemple
 blender/                             sources de la maquette

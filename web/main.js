@@ -10,48 +10,76 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { Sky } from 'three/addons/objects/Sky.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 
 const RELAIS = '';                       // le relais sert aussi cette page
+const LEGER = new URLSearchParams(location.search).has('leger');   // sans ombres, pour les machines modestes
 const $ = (id) => document.getElementById(id);
 
 // ------------------------------------------------------------------ rendu
-const renderer = new THREE.WebGLRenderer({ canvas: $('scene'), antialias: true });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+const renderer = new THREE.WebGLRenderer({ canvas: $('scene'), antialias: true, preserveDrawingBuffer: LEGER });
+renderer.setPixelRatio(LEGER ? 1 : Math.min(devicePixelRatio, 2));
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.05;
-renderer.shadowMap.enabled = true;
+renderer.toneMappingExposure = 0.6;
+renderer.shadowMap.enabled = !LEGER;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 const etiquettes = new CSS2DRenderer({ element: $('etiquettes') });
 
 const scene = new THREE.Scene();
-scene.background = ciel();
-scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
-scene.environmentIntensity = 0.45;
-scene.fog = new THREE.Fog(0xd8e6f2, 600, 1600);
-
-const camera = new THREE.PerspectiveCamera(40, 1, 0.5, 5000);
+const camera = new THREE.PerspectiveCamera(42, 1, 0.3, 20000);
 const controles = new OrbitControls(camera, renderer.domElement);
 controles.enableDamping = true;
 controles.maxPolarAngle = Math.PI * 0.47;
-controles.minDistance = 25;
-controles.maxDistance = 900;
+controles.minDistance = 20;
+controles.maxDistance = 700;
 
-scene.add(new THREE.HemisphereLight(0xdbe9ff, 0x6b7a55, 0.9));
-const soleil = new THREE.DirectionalLight(0xfff4e0, 2.4);
+// Ciel physique (Preetham) et soleil de fin de matinee
+const ciel = new Sky();
+ciel.scale.setScalar(15000);
+Object.assign(ciel.material.uniforms, {});
+ciel.material.uniforms.turbidity.value = 4;
+ciel.material.uniforms.rayleigh.value = 1.2;
+ciel.material.uniforms.mieCoefficient.value = 0.004;
+ciel.material.uniforms.mieDirectionalG.value = 0.85;
+const directionSoleil = new THREE.Vector3().setFromSphericalCoords(1, THREE.MathUtils.degToRad(52), THREE.MathUtils.degToRad(215));
+ciel.material.uniforms.sunPosition.value.copy(directionSoleil);
+scene.add(ciel);
+const pmrem = new THREE.PMREMGenerator(renderer);
+const scenePourCiel = new THREE.Scene(); scenePourCiel.add(ciel.clone());
+scene.environment = pmrem.fromScene(scenePourCiel).texture;
+scene.environmentIntensity = 0.5;
+scene.fog = new THREE.Fog(0xc9dcee, 1800, 7000);
+scene.add(nuages());
+
+scene.add(new THREE.HemisphereLight(0xe3efff, 0x7d8f62, 0.6));
+const soleil = new THREE.DirectionalLight(0xfff1dc, 2.6);
 soleil.castShadow = true;
 soleil.shadow.mapSize.set(4096, 4096);
 soleil.shadow.bias = -0.0004;
+soleil.shadow.normalBias = 0.4;
 scene.add(soleil, soleil.target);
 
-function ciel() {
-  const c = document.createElement('canvas'); c.width = 2; c.height = 256;
-  const g = c.getContext('2d').createLinearGradient(0, 0, 0, 256);
-  g.addColorStop(0, '#5f97d6'); g.addColorStop(0.55, '#a9c8ea'); g.addColorStop(1, '#e4edf6');
-  const x = c.getContext('2d'); x.fillStyle = g; x.fillRect(0, 0, 2, 256);
-  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
-  return t;
+// Quelques nuages : des sprites doux, poses haut et loin
+function nuages() {
+  const c = document.createElement('canvas'); c.width = c.height = 256;
+  const x = c.getContext('2d');
+  for (let i = 0; i < 14; i++) {
+    const px = 50 + Math.random() * 156, py = 90 + Math.random() * 70, r = 30 + Math.random() * 45;
+    const g = x.createRadialGradient(px, py, 0, px, py, r);
+    g.addColorStop(0, 'rgba(255,255,255,0.85)'); g.addColorStop(1, 'rgba(255,255,255,0)');
+    x.fillStyle = g; x.fillRect(0, 0, 256, 256);
+  }
+  const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
+  const groupe = new THREE.Group();
+  for (let i = 0; i < 26; i++) {
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false, fog: false, opacity: 0.9 }));
+    const a = Math.random() * Math.PI * 2, d = 900 + Math.random() * 1600;
+    s.position.set(Math.cos(a) * d, 260 + Math.random() * 260, Math.sin(a) * d);
+    s.scale.set(500 + Math.random() * 500, 180 + Math.random() * 120, 1);
+    groupe.add(s);
+  }
+  return groupe;
 }
 
 function redimensionner() {
@@ -74,10 +102,13 @@ const gltf = await new GLTFLoader(manager).setDRACOLoader(draco).loadAsync('mode
   (e) => { if (e.total) $('progression').textContent = Math.round((e.loaded / e.total) * 100) + ' %'; });
 const maquette = gltf.scene;
 scene.add(maquette);
+if (LEGER) window.__campus = { scene, maquette, camera, renderer };
 
 // Le sol. Dans Blender, la matiere SOL_Melange melange quatre revetements selon une carte
 // (rouge : enrobe, vert : pavage, bleu : gravillon, noir : gazon). L'export glTF ne garde que
-// la carte, d'ou un sol rouge : on refait ici le melange, comme dans maquette/scripts/sol_unifie.py.
+// la carte, d'ou le sol rouge d'origine. On applique un plan cuit a partir de cette carte
+// (outils/cuire_sol.py : couleurs claires, bords de chaussee, lignes mediane), avec un grain
+// discret des textures reelles pour la vue rapprochee.
 const chargeur = new THREE.TextureLoader(manager);
 function tuile(nom) {
   const t = chargeur.load(`textures/${nom}`);
@@ -87,7 +118,10 @@ function tuile(nom) {
 const revetements = {
   tGazon: { value: tuile('sol_gazon.jpg') }, tEnrobe: { value: tuile('sol_enrobe.jpg') },
   tPavage: { value: tuile('sol_pavage.jpg') }, tGravillon: { value: tuile('sol_gravillon.jpg') },
+  tCarte: { value: null },
 };
+const plan = chargeur.load('textures/sol_plan.jpg');
+plan.colorSpace = THREE.SRGBColorSpace; plan.flipY = false; plan.anisotropy = 16;
 
 maquette.traverse((o) => {
   if (!o.isMesh) return;
@@ -96,19 +130,27 @@ maquette.traverse((o) => {
   const m = o.material;
   if (m.name === 'SOL_Melange') {
     o.castShadow = false;
-    m.map.colorSpace = THREE.NoColorSpace;      // la carte est une donnee, pas une couleur
-    m.map.needsUpdate = true;
+    const carte = m.map;
+    carte.colorSpace = THREE.NoColorSpace;          // la carte est une donnee, pas une couleur
+    revetements.tCarte.value = carte;
+    m.map = plan;
+    m.roughness = 0.95;
+    // Coordonnees du plan calculees depuis la position (metres) : independantes des UV du maillage,
+    // donc robustes a la decimation. Cadre de la carte : 438 m de cote, origine (-195.76, -203.07).
     m.onBeforeCompile = (s) => {
       Object.assign(s.uniforms, revetements);
-      s.vertexShader = 'varying vec2 vMetre;\n' + s.vertexShader.replace('#include <uv_vertex>', '#include <uv_vertex>\n vMetre = uv;');
-      s.fragmentShader = 'varying vec2 vMetre;\nuniform sampler2D tGazon, tEnrobe, tPavage, tGravillon;\n' +
+      s.vertexShader = 'varying vec3 vSol;\n' + s.vertexShader.replace('#include <uv_vertex>', '#include <uv_vertex>\n vSol = position;');
+      s.fragmentShader = 'varying vec3 vSol;\nuniform sampler2D tGazon, tEnrobe, tPavage, tGravillon, tCarte;\n' +
         s.fragmentShader.replace('#include <map_fragment>', `
-          vec3 carte = texture2D(map, vMapUv).rgb;
-          vec3 sol = texture2D(tGazon, vMetre / 2.5).rgb;
-          sol = mix(sol, texture2D(tEnrobe, vMetre / 4.0).rgb * vec3(0.46, 0.47, 0.50), carte.r);
-          sol = mix(sol, texture2D(tPavage, vMetre / 3.0).rgb * vec3(1.06, 1.05, 1.02), carte.g);
-          sol = mix(sol, texture2D(tGravillon, vMetre / 2.0).rgb * vec3(1.62, 1.52, 1.30), carte.b);
-          diffuseColor.rgb *= sol;`);
+          vec2 uvPlan = vec2((vSol.x + 195.7597) / 438.0, 1.0 - (203.0697 - vSol.z) / 438.0);
+          vec2 vMetre = vSol.xz;
+          vec4 couleurPlan = texture2D(map, uvPlan);
+          vec3 k = texture2D(tCarte, uvPlan).rgb;
+          float g = dot(texture2D(tGazon, vMetre / 2.5).rgb, vec3(0.33));
+          g = mix(g, dot(texture2D(tEnrobe, vMetre / 4.0).rgb, vec3(0.33)), k.r);
+          g = mix(g, dot(texture2D(tPavage, vMetre / 3.0).rgb, vec3(0.33)), k.g);
+          g = mix(g, dot(texture2D(tGravillon, vMetre / 2.0).rgb, vec3(0.33)), k.b);
+          diffuseColor.rgb *= couleurPlan.rgb * (0.88 + 0.32 * g);`);
     };
     m.needsUpdate = true;
   }
@@ -119,17 +161,14 @@ maquette.traverse((o) => {
   }
 });
 
-// Cadrage et soleil sur l'emprise du campus
+// Soleil sur l'emprise du campus
 const boite = new THREE.Box3().setFromObject(maquette);
 const centre = boite.getCenter(new THREE.Vector3());
 const rayonCampus = boite.getSize(new THREE.Vector3()).length() / 2;
-soleil.position.copy(centre).add(new THREE.Vector3(-180, 320, 140));
+soleil.position.copy(centre).addScaledVector(directionSoleil, 450);
 soleil.target.position.copy(centre);
-Object.assign(soleil.shadow.camera, { left: -rayonCampus, right: rayonCampus, top: rayonCampus, bottom: -rayonCampus, far: 1200 });
+Object.assign(soleil.shadow.camera, { left: -rayonCampus, right: rayonCampus, top: rayonCampus, bottom: -rayonCampus, far: 1400 });
 soleil.shadow.camera.updateProjectionMatrix();
-const vueAccueil = { cible: centre.clone(), position: centre.clone().add(new THREE.Vector3(-rayonCampus * 0.55, rayonCampus * 0.55, rayonCampus * 0.7)) };
-camera.position.copy(vueAccueil.position);
-controles.target.copy(vueAccueil.cible);
 
 // ------------------------------------------------------------------ batiments
 function batimentDe(objet) {
@@ -162,12 +201,12 @@ for (const [id, e] of emprises) {
   g.ids.push(id); g.emprise.union(e);
   groupes.set(b.plan_num, g);
 }
-const plan = [...groupes.keys()].sort((a, b) => a.localeCompare(b, 'fr', { numeric: true }));
+const plan_ = [...groupes.keys()].sort((a, b) => a.localeCompare(b, 'fr', { numeric: true }));
 const nomPlan = (n) => NOMS[n] || batiments.get(groupes.get(n).ids[0]).nom;
-const groupeDe = (id) => plan.find((n) => groupes.get(n).ids.includes(id));
+const groupeDe = (id) => plan_.find((n) => groupes.get(n).ids.includes(id));
 
 const pastilles = new Map();
-for (const n of plan) {
+for (const n of plan_) {
   const e = groupes.get(n).emprise;
   const div = document.createElement('div');
   div.className = 'etiquette';
@@ -179,8 +218,59 @@ for (const n of plan) {
   pastilles.set(n, div);
 }
 
+// Vue d'accueil cadree sur les batiments, pas sur tout le terrain
+const coeur = new THREE.Box3();
+for (const n of plan_) coeur.union(groupes.get(n).emprise);
+const centreCoeur = coeur.getCenter(new THREE.Vector3());
+const rayonCoeur = coeur.getSize(new THREE.Vector3()).setY(0).length() / 2;
+const vueAccueil = { cible: centreCoeur.clone(),
+  position: centreCoeur.clone().add(new THREE.Vector3(-0.45, 0.5, 0.74).normalize().multiplyScalar(rayonCoeur * 1.0)) };
+camera.position.copy(vueAccueil.position);
+controles.target.copy(vueAccueil.cible);
+
+// Points de teleportation : une pastille au sol devant chaque batiment du plan. Un clic pose
+// le visiteur a hauteur d'yeux, face au batiment ; « Retour a l'accueil » rend la vue d'ensemble.
+const terrain = [];
+maquette.traverse((o) => { if (o.isMesh && o.material.map === plan) terrain.push(o); });
+const pastillesSol = [];
+const anneau = new THREE.MeshBasicMaterial({ color: 0xff6633, transparent: true, opacity: 0.95, depthWrite: false });
+const disque = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.55, depthWrite: false });
+const sonde = new THREE.Raycaster();
+for (const n of plan_) {
+  const e = groupes.get(n).emprise;
+  const c = e.getCenter(new THREE.Vector3());
+  const versCoeur = centreCoeur.clone().sub(c).setY(0);
+  if (versCoeur.lengthSq() < 1) versCoeur.set(1, 0, 0);
+  versCoeur.normalize();
+  const demi = e.getSize(new THREE.Vector3()).multiplyScalar(0.5);
+  const recul = Math.abs(versCoeur.x) * demi.x + Math.abs(versCoeur.z) * demi.z + 7;
+  const p = c.clone().addScaledVector(versCoeur, recul);
+  sonde.set(new THREE.Vector3(p.x, 200, p.z), new THREE.Vector3(0, -1, 0));
+  const sol = sonde.intersectObjects(terrain, false)[0];
+  p.y = (sol ? sol.point.y : e.min.y) + 0.08;
+  const g = new THREE.Group();
+  g.position.copy(p);
+  const a = new THREE.Mesh(new THREE.RingGeometry(1.3, 1.7, 48), anneau); a.rotation.x = -Math.PI / 2;
+  const d = new THREE.Mesh(new THREE.CircleGeometry(1.3, 48), disque); d.rotation.x = -Math.PI / 2;
+  g.add(a, d); g.renderOrder = 2;
+  g.userData = { plan: n, regard: c.clone().setY(e.min.y + Math.min(8, (e.max.y - e.min.y) * 0.5)) };
+  scene.add(g);
+  pastillesSol.push(g);
+}
+
+function teleporter(g) {
+  const yeux = g.position.clone().add(new THREE.Vector3(0, 1.7, 0));
+  const regard = g.userData.regard;
+  const dir = regard.clone().sub(yeux).normalize();
+  controles.minDistance = 0.5;
+  controles.maxPolarAngle = Math.PI * 0.62;
+  volerVers(yeux.clone().addScaledVector(dir, 2), yeux);
+  selectionner(groupes.get(g.userData.plan).ids[0]);
+  tracer('s_est_teleporte', g.userData.plan);
+}
+
 // Liste « Trouver un batiment »
-for (const n of plan) for (const id of groupes.get(n).ids) {
+for (const n of plan_) for (const id of groupes.get(n).ids) {
   const li = document.createElement('li');
   li.innerHTML = `<b>${n}</b>${affiche(batiments.get(id).nom)}`;
   li.addEventListener('click', () => selectionner(id, true));
@@ -229,6 +319,7 @@ function volerVers(cible, position) {
   vol = { t: 0, de: { c: controles.target.clone(), p: camera.position.clone() }, a: { c: cible, p: position } };
 }
 function volerVersBatiment(id) {
+  controles.minDistance = 20; controles.maxPolarAngle = Math.PI * 0.47;
   const e = emprises.get(id);
   const c = e.getCenter(new THREE.Vector3());
   const r = Math.max(30, e.getSize(new THREE.Vector3()).length());
@@ -253,21 +344,27 @@ renderer.domElement.addEventListener('pointerup', (e) => {
   if (!appui || Math.hypot(e.clientX - appui[0], e.clientY - appui[1]) > 5) return;   // c'etait un glisser
   pointeur.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
   rayon.setFromCamera(pointeur, camera);
+  const pastille = rayon.intersectObjects(pastillesSol, true)[0];
+  if (pastille) { teleporter(pastille.object.parent); return; }
   const touche = rayon.intersectObject(maquette, true)[0];
   selectionner(touche ? batimentDe(touche.object) : null);
 });
 
 // Defilement d'un batiment a l'autre
 function decaler(pas) {
-  const i = plan.indexOf(groupeDe(selection));
-  const j = i < 0 ? (pas > 0 ? 0 : plan.length - 1) : (i + pas + plan.length) % plan.length;
-  selectionner(groupes.get(plan[j]).ids[0], true);
+  const i = plan_.indexOf(groupeDe(selection));
+  const j = i < 0 ? (pas > 0 ? 0 : plan_.length - 1) : (i + pas + plan_.length) % plan_.length;
+  selectionner(groupes.get(plan_[j]).ids[0], true);
 }
 $('precedent').onclick = () => decaler(-1);
 $('suivant').onclick = () => decaler(1);
 
 // Retour a l'accueil
-const accueil = () => { selectionner(null); volerVers(vueAccueil.cible.clone(), vueAccueil.position.clone()); };
+const accueil = () => {
+  selectionner(null);
+  controles.minDistance = 20; controles.maxPolarAngle = Math.PI * 0.47;
+  volerVers(vueAccueil.cible.clone(), vueAccueil.position.clone());
+};
 $('retour').onclick = accueil;
 $('accueil-logo').onclick = (e) => { e.preventDefault(); accueil(); };
 $('replier').onclick = () => $('carte').classList.toggle('replie');
@@ -332,6 +429,8 @@ renderer.setAnimationLoop(() => {
     camera.position.lerpVectors(vol.de.p, vol.a.p, k);
     if (vol.t >= 1) vol = null;
   }
+  const pouls = 1 + 0.08 * Math.sin(horloge.elapsedTime * 3);
+  for (const g of pastillesSol) g.scale.setScalar(pouls);
   controles.update();
   renderer.render(scene, camera);
   etiquettes.render(scene, camera);
