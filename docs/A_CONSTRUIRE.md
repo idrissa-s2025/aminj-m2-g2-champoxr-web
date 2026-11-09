@@ -1,4 +1,4 @@
-# Ce que le groupe G2 conçoit
+# Ce que le groupe P2 conçoit
 
 Le socle montre une chaîne technique : afficher le campus, sélectionner un bâtiment, en
 parler. Il ne fait rien apprendre. Les sept éléments ci-dessous sont ceux du dossier du
@@ -43,7 +43,7 @@ Ce que le visiteur voit de son parcours à la fin.
   et sur un téléphone.
 - Accessibilité : clavier, contraste, sous-titres si l'agent parle.
 
-## Coordination avec G1
+## Coordination avec P1
 
 Même maquette, même `campus_semantique.json`. Toute correction de données se fait dans le
 fichier commun et se signale à l'autre équipe.

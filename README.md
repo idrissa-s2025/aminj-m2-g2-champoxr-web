@@ -1,4 +1,4 @@
-# ChampoXR · équipe web immersif (G2)
+# ChampoXR · équipe web immersif (P2)
 
 Socle de projet du Master 2 AMINJ, INU Champollion, 2026-2027.
 Module « Développer une ingénierie pédagogique pour les serious games ».
@@ -16,9 +16,9 @@ portail, pas une formation.
 | Maquette texturée du campus, décimée (glTF Draco, 20 Mo, environ 300 000 triangles uniques) | `web/modele/campus_champollion.glb` | fourni |
 | Plan du sol cuit : gazon, enrobé, pavage, bords de chaussée, lignes médianes | `web/textures/sol_plan.jpg` | fourni |
 | Ciel, nuages, ombres, points de téléportation au pied des bâtiments | `web/main.js` | fourni |
-| Sources Blender (hologramme et maquette, version de travail du 23/09) | `blender/` | fourni |
-| Sémantique du campus : bâtiments, étages, locaux | `web/donnees/campus_semantique.json` | fourni, partagé avec G1 |
-| Fiches des bâtiments (rôle, histoire, pédagogie, services) | `web/donnees/fiches_batiments.json` | fourni, affiché et transmis à l'agent, partagé avec G1 |
+| Sources Blender (maquette texturée et hologramme, version du 23/09) : textures dans `blender/textures`, sans dépendance externe ni donnée LiDAR | `blender/` | fourni |
+| Sémantique du campus : bâtiments, étages, locaux | `web/donnees/campus_semantique.json` | fourni, partagé avec P1 |
+| Fiches des bâtiments (rôle, histoire, pédagogie, services) | `web/donnees/fiches_batiments.json` | fourni, affiché et transmis à l'agent, partagé avec P1 |
 | Scène three.js, vue orbitale, sélection, fiche du bâtiment | `web/main.js` | fourni |
 | Agent par le relais (texte) | `web/main.js` et `relais/` | fourni, fonction didactique à écrire |
 | Traces xAPI simplifiées | `tracer()` dans `web/main.js` | fourni, verbes à choisir |

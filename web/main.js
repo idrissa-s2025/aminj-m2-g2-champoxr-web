@@ -1,4 +1,4 @@
-// Socle web immersif du campus Champollion (AMINJ M2, equipe G2).
+// Socle web immersif du campus Champollion (AMINJ M2, equipe P2).
 //
 // Fourni : la maquette 3D et son sol, la navigation, les etiquettes des batiments, la fiche
 // d'un batiment, le deplacement d'un batiment a l'autre, un agent par le relais et une trace
