@@ -1,0 +1,17 @@
+:root { --marine: #000033; --orange: #FF6633; --texte: #22224A; --discret: #6B6E8C; --pale: #F3F4F8; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; font-family: system-ui, sans-serif; color: var(--texte); background: #0b0b1e; }
+#scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+header { position: fixed; top: 0; left: 0; right: 0; padding: 10px 16px; background: var(--marine); color: #fff; display: flex; gap: 12px; align-items: baseline; }
+header span { color: #c9cbe0; font-size: 13px; }
+#fiche { position: fixed; top: 56px; right: 16px; width: min(340px, calc(100% - 32px)); max-height: 55vh; overflow: auto;
+  background: #fff; border-top: 4px solid var(--orange); padding: 12px 16px; border-radius: 4px; }
+#fiche h2 { margin: 0 0 4px; font-size: 18px; color: var(--marine); }
+#fiche p { margin: 0 0 8px; color: var(--discret); font-size: 13px; }
+#fiche ul { margin: 0; padding-left: 18px; font-size: 14px; }
+#agent { position: fixed; left: 16px; right: 16px; bottom: 16px; max-width: 720px; margin: 0 auto; background: #fff; border-radius: 4px; padding: 12px; }
+#agent-reponse { min-height: 2.6em; font-size: 15px; margin-bottom: 8px; white-space: pre-wrap; }
+#agent-form { display: flex; gap: 8px; }
+#agent-form input { flex: 1; padding: 8px 10px; border: 1px solid #d3d5e0; border-radius: 3px; font-size: 15px; }
+#agent-form button { background: var(--marine); color: #fff; border: 0; padding: 8px 14px; border-radius: 3px; cursor: pointer; }
+#chargement { position: fixed; inset: 0; display: grid; place-items: center; color: #fff; pointer-events: none; }

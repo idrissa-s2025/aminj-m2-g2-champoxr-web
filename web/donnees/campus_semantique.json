@@ -1,0 +1,1033 @@
+{
+  "campus": {
+    "id": "CAMPUS_ALBI",
+    "nom": "Centre universitaire Jean-François Champollion — Albi",
+    "adresse": "Place de Verdun, 81012 Albi",
+    "telephone": "05 63 48 17 17",
+    "courriel": "contact.albi@univ-jfc.fr",
+    "origine": {
+      "lat": 43.91845803968254,
+      "lon": 2.136831328571428,
+      "altitude_ref_m": 174.32
+    },
+    "note": "Repère Blender en mètres. X est, Y nord, Z relatif à l'altitude de référence."
+  },
+  "sources": [
+    "OpenStreetMap (ODbL)",
+    "IGN LiDAR HD — MNT et MNH",
+    "IGN orthophotographie",
+    "Plan officiel de l'université"
+  ],
+  "batiments": [
+    {
+      "semantic_id": "BAT_02_MULTIMEDIA",
+      "plan_num": "02",
+      "nom": "Bâtiment multimédia",
+      "confiance": "sure",
+      "osm": "way/75179696",
+      "osm_nom": "Bâtiment 5 - Maison Multimédia",
+      "altitude_sol_m": 0.34,
+      "gouttiere_m": 7.39,
+      "faitage_m": 8.97,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        136.06,
+        103.29
+      ],
+      "niveaux": [
+        {
+          "etage": "RDC",
+          "locaux": [
+            {
+              "id": "AUDITORIUM_MICHEL_COHOU",
+              "nom": "Auditorium 1 M. Cohou",
+              "type": "auditorium",
+              "code": "MM013"
+            },
+            {
+              "id": "AUDITORIUM_B_PRADIN",
+              "nom": "Auditorium 2 B. Pradin",
+              "type": "auditorium",
+              "code": "MM017"
+            },
+            {
+              "id": "ATELIERS_INFO_RDC",
+              "nom": "Ateliers informatiques",
+              "type": "salle_informatique",
+              "plage": "MM001 à MM005"
+            }
+          ]
+        },
+        {
+          "etage": "1",
+          "locaux": [
+            {
+              "id": "DSIUN",
+              "nom": "DSIUN — direction du système d’information et du numérique",
+              "type": "service"
+            },
+            {
+              "id": "ATELIERS_INFO_1",
+              "nom": "Ateliers informatiques DSIUN",
+              "type": "salle_informatique",
+              "plage": "MM101 à MM103"
+            }
+          ]
+        }
+      ],
+      "nom_usuel": "appelé aussi « Maison Multimédia »",
+      "alias": [
+        "la Maison Multimédia",
+        "le multimédia",
+        "le bâtiment 2",
+        "les auditoriums"
+      ]
+    },
+    {
+      "semantic_id": "BAT_03_JEAN_JAURES",
+      "plan_num": "03",
+      "nom": "Bâtiment Jean-Jaurès",
+      "confiance": "sure",
+      "osm": "way/501280200",
+      "osm_nom": "Bâtiment 1 - Jean Jaurès",
+      "altitude_sol_m": 0.51,
+      "gouttiere_m": 15.45,
+      "faitage_m": 19.21,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        42.47,
+        80.18
+      ],
+      "niveaux": [
+        {
+          "etage": "RDC",
+          "locaux": [
+            {
+              "id": "AMPHI_G_DE_CUNH",
+              "nom": "Amphithéâtre G. de Cunh",
+              "type": "amphitheatre",
+              "code": "JJ002"
+            },
+            {
+              "id": "AMPHI_O_DE_GOUGES",
+              "nom": "Amphithéâtre O. de Gouges",
+              "type": "amphitheatre",
+              "code": "JJ006"
+            },
+            {
+              "id": "SALLE_PORTALIS",
+              "nom": "Salle Portalis",
+              "type": "salle"
+            },
+            {
+              "id": "SALLES_JJ_RDC",
+              "nom": "Salles de cours",
+              "type": "salle",
+              "plage": "JJ001 à JJ027"
+            }
+          ]
+        },
+        {
+          "etage": "1",
+          "locaux": [
+            {
+              "id": "SALLES_JJ_1",
+              "nom": "Salles de cours",
+              "type": "salle",
+              "plage": "JJ106 à JJ124"
+            }
+          ]
+        },
+        {
+          "etage": "2",
+          "locaux": [
+            {
+              "id": "SALLES_JJ_2",
+              "nom": "Salles de cours",
+              "type": "salle",
+              "plage": "JJ201 à JJ220"
+            }
+          ]
+        },
+        {
+          "etage": "3",
+          "locaux": [
+            {
+              "id": "SALLES_JJ_3",
+              "nom": "Salles de cours",
+              "type": "salle",
+              "plage": "JJ320 à JJ327"
+            },
+            {
+              "id": "MAISON_RECHERCHE_JJ",
+              "nom": "Maison de la recherche",
+              "type": "recherche"
+            }
+          ]
+        }
+      ],
+      "alias": [
+        "Jean Jaurès",
+        "Jaurès",
+        "le bâtiment 3"
+      ]
+    },
+    {
+      "semantic_id": "BAT_03_JEAN_JAURES_EXTENSION",
+      "plan_num": "03 bis",
+      "nom": "Extension du bâtiment Jean-Jaurès",
+      "confiance": "sure",
+      "osm": "way/75154965",
+      "osm_nom": "Bâtiment 9 - Extension Jean Jaurès",
+      "altitude_sol_m": -0.02,
+      "gouttiere_m": 12.71,
+      "faitage_m": 16.18,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        57.61,
+        116.5
+      ],
+      "niveaux": [
+        {
+          "etage": "RDC",
+          "locaux": [
+            {
+              "id": "AMPHI_JJ035",
+              "nom": "Nouvel amphithéâtre",
+              "type": "amphitheatre",
+              "code": "JJ035"
+            }
+          ]
+        }
+      ],
+      "nom_usuel": "le « 03 bis » du plan",
+      "alias": [
+        "le 03 bis",
+        "la nouvelle extension",
+        "le nouveau bâtiment"
+      ]
+    },
+    {
+      "semantic_id": "BAT_05_EMILE_BOREL",
+      "plan_num": "05",
+      "nom": "Bâtiment Émile-Borel",
+      "confiance": "sure",
+      "osm": "way/501280202",
+      "osm_nom": "Bâtiment 2 - Émile Borel",
+      "altitude_sol_m": 0.45,
+      "gouttiere_m": 17.54,
+      "faitage_m": 19.23,
+      "source_hauteur": "lidar",
+      "a_decouper": true,
+      "centre_m": [
+        132.61,
+        15.19
+      ],
+      "niveaux": [
+        {
+          "etage": "RDC",
+          "locaux": [
+            {
+              "id": "AMPHI_H_POINCARE",
+              "nom": "Amphithéâtre H. Poincaré",
+              "type": "amphitheatre",
+              "code": "EB021"
+            },
+            {
+              "id": "AMPHI_J_ROSTAND",
+              "nom": "Amphithéâtre J. Rostand",
+              "type": "amphitheatre",
+              "code": "EB020"
+            },
+            {
+              "id": "AMPHI_I_JOLIOT_CURIE",
+              "nom": "Amphithéâtre I. Joliot-Curie",
+              "type": "amphitheatre",
+              "code": "EB019"
+            },
+            {
+              "id": "SALLES_EB_RDC",
+              "nom": "Salles de cours",
+              "type": "salle",
+              "plage": "EB002 à EB042"
+            }
+          ]
+        },
+        {
+          "etage": "1",
+          "locaux": [
+            {
+              "id": "SALLES_EB_1",
+              "nom": "Salles de cours",
+              "type": "salle",
+              "plage": "EB102 à EB114"
+            }
+          ]
+        },
+        {
+          "etage": "2",
+          "locaux": [
+            {
+              "id": "SALLES_EB_2",
+              "nom": "Salles de cours",
+              "type": "salle",
+              "plage": "EB202 à EB210"
+            },
+            {
+              "id": "CFA",
+              "nom": "CFA et salles de cours",
+              "type": "salle"
+            }
+          ]
+        },
+        {
+          "etage": "3",
+          "locaux": [
+            {
+              "id": "MAISON_RECHERCHE_BO",
+              "nom": "Maison de la recherche",
+              "type": "recherche"
+            }
+          ]
+        }
+      ],
+      "alias": [
+        "Borel",
+        "Émile Borel",
+        "le bâtiment 5",
+        "le EB"
+      ]
+    },
+    {
+      "semantic_id": "BAT_04_ADMINISTRATIF",
+      "plan_num": "04",
+      "nom": "Bâtiment administratif",
+      "confiance": "sure",
+      "osm": "way/501280201",
+      "osm_nom": "Bâtiment 7 - Administration",
+      "altitude_sol_m": 0.81,
+      "gouttiere_m": 15.93,
+      "faitage_m": 18.84,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        63.7,
+        20.76
+      ],
+      "niveaux": [
+        {
+          "etage": "RDC",
+          "locaux": [
+            {
+              "id": "ACCUEIL",
+              "nom": "Accueil",
+              "type": "accueil"
+            },
+            {
+              "id": "GUICHET_UNIQUE",
+              "nom": "Guichet unique",
+              "type": "service"
+            },
+            {
+              "id": "FORMATION_CONTINUE",
+              "nom": "Formation continue et apprentissage",
+              "type": "service"
+            },
+            {
+              "id": "VIE_ETUDIANTE_SANTE",
+              "nom": "Vie étudiante — santé et social",
+              "type": "service"
+            }
+          ]
+        },
+        {
+          "etage": "1",
+          "locaux": [
+            {
+              "id": "SCOLARITES",
+              "nom": "Scolarités et relations internationales",
+              "type": "service"
+            },
+            {
+              "id": "SUIO_IP",
+              "nom": "SUIO-IP — orientation et insertion professionnelle",
+              "type": "service"
+            },
+            {
+              "id": "SALLE_CONSEIL",
+              "nom": "Salle du conseil",
+              "type": "salle"
+            }
+          ]
+        },
+        {
+          "etage": "2",
+          "locaux": [
+            {
+              "id": "DIRECTION",
+              "nom": "Direction",
+              "type": "service"
+            },
+            {
+              "id": "COMMUNICATION",
+              "nom": "Service communication et vie étudiante",
+              "type": "service"
+            },
+            {
+              "id": "RH",
+              "nom": "Service ressources humaines",
+              "type": "service"
+            },
+            {
+              "id": "FINANCIER",
+              "nom": "Service financier",
+              "type": "service"
+            }
+          ]
+        }
+      ],
+      "alias": [
+        "l'administration",
+        "le bâtiment 4",
+        "le bâtiment administratif"
+      ]
+    },
+    {
+      "semantic_id": "BAT_06_BIBLIOTHEQUE",
+      "plan_num": "06",
+      "nom": "Bibliothèque universitaire",
+      "confiance": "sure",
+      "osm": "way/501280199",
+      "osm_nom": "Bâtiment 6 - Bibliothèque universitaire",
+      "altitude_sol_m": 0.32,
+      "gouttiere_m": 6.83,
+      "faitage_m": 11.11,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        53.63,
+        -48.3
+      ],
+      "niveaux": [
+        {
+          "etage": "RDC",
+          "locaux": [
+            {
+              "id": "BU",
+              "nom": "Bibliothèque universitaire",
+              "type": "bibliotheque"
+            }
+          ]
+        },
+        {
+          "etage": "1",
+          "locaux": [
+            {
+              "id": "SALLES_TRAVAIL",
+              "nom": "Salles de travail",
+              "type": "salle_travail"
+            }
+          ]
+        }
+      ],
+      "nom_usuel": "la BU",
+      "alias": [
+        "la BU",
+        "la bibli",
+        "la bibliothèque"
+      ]
+    },
+    {
+      "semantic_id": "BAT_07_RESTAURANT_UNIVERSITAIRE",
+      "plan_num": "07",
+      "nom": "Restaurant universitaire",
+      "confiance": "sure",
+      "osm": "way/501280197",
+      "osm_nom": "Bâtiment 14 - Restaurant Universitaire",
+      "altitude_sol_m": 0.69,
+      "gouttiere_m": 8.83,
+      "faitage_m": 11.75,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        -18.96,
+        -45.47
+      ],
+      "niveaux": [
+        {
+          "etage": "RDC",
+          "locaux": [
+            {
+              "id": "RU",
+              "nom": "Restaurant universitaire",
+              "type": "restauration"
+            },
+            {
+              "id": "CAFETERIA",
+              "nom": "Cafétéria",
+              "type": "restauration"
+            }
+          ]
+        }
+      ],
+      "nom_usuel": "le RU",
+      "alias": [
+        "le RU",
+        "le resto U",
+        "le restau U",
+        "le restaurant U",
+        "la cantine",
+        "le CROUS"
+      ]
+    },
+    {
+      "semantic_id": "BAT_08_PASCAL_AMBIC",
+      "plan_num": "08",
+      "nom": "Bâtiment Pascal(e) Ambic",
+      "confiance": "sure",
+      "osm": "way/75180732",
+      "osm_nom": "Bâtiment 3 - Pascal(e) Ambic",
+      "altitude_sol_m": 0.82,
+      "gouttiere_m": 9.48,
+      "faitage_m": 11.14,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        -47.8,
+        -87.61
+      ],
+      "niveaux": [
+        {
+          "etage": "RDC",
+          "locaux": [
+            {
+              "id": "CAFETERIA",
+              "nom": "Cafétéria",
+              "type": "restauration"
+            },
+            {
+              "id": "FOYER",
+              "nom": "Foyer",
+              "type": "vie_etudiante"
+            },
+            {
+              "id": "ACTION_CULTURELLE",
+              "nom": "Action culturelle",
+              "type": "service"
+            },
+            {
+              "id": "BUREAU_ASSOCIATIONS",
+              "nom": "Bureau des associations",
+              "type": "vie_etudiante"
+            },
+            {
+              "id": "MISSION_SPORT",
+              "nom": "Mission sport",
+              "type": "service"
+            },
+            {
+              "id": "CROUS_INFIRMERIE",
+              "nom": "CROUS et infirmerie",
+              "type": "service"
+            }
+          ]
+        },
+        {
+          "etage": "1",
+          "locaux": [
+            {
+              "id": "AFEV",
+              "nom": "AFEV",
+              "type": "vie_etudiante"
+            },
+            {
+              "id": "EPICERIE_SOLIDAIRE",
+              "nom": "Épicerie solidaire",
+              "type": "vie_etudiante"
+            },
+            {
+              "id": "RADIO_CHAMPO",
+              "nom": "Radio Champo",
+              "type": "vie_etudiante"
+            },
+            {
+              "id": "SALLES_PA_1",
+              "nom": "Salles de cours",
+              "type": "salle",
+              "plage": "PA109 à PA112"
+            }
+          ]
+        }
+      ],
+      "alias": [
+        "Ambic",
+        "Pascal Ambic",
+        "la vie étudiante",
+        "le bâtiment 8"
+      ]
+    },
+    {
+      "semantic_id": "BAT_10_RESIDENCES",
+      "plan_num": "10",
+      "nom": "Résidence étudiante, côté IFMS",
+      "confiance": "groupe",
+      "osm": "way/501280196",
+      "osm_nom": "Bâtiment 15 - Résidence Universitaire Laperouse",
+      "altitude_sol_m": 0.25,
+      "gouttiere_m": 9.85,
+      "faitage_m": 11.55,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        -82.85,
+        -45.27
+      ],
+      "niveaux": [],
+      "nom_usuel": "une des résidences du CROUS",
+      "alias": [
+        "la résidence étudiante",
+        "la cité U",
+        "les logements étudiants"
+      ]
+    },
+    {
+      "semantic_id": "BAT_10_RESIDENCES_ASTROLABE",
+      "plan_num": "10",
+      "nom": "Résidence L’Astrolabe",
+      "confiance": "groupe",
+      "osm": "way/75191948",
+      "osm_nom": "Bâtiment 16 - Résidence Universitaire L'Astrolabe",
+      "altitude_sol_m": -0.9,
+      "gouttiere_m": 9.85,
+      "faitage_m": 11.31,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        -257.91,
+        -157.1
+      ],
+      "niveaux": [],
+      "nom_usuel": "résidence du CROUS",
+      "alias": [
+        "l'Astrolabe",
+        "la résidence CROUS",
+        "la cité U"
+      ]
+    },
+    {
+      "semantic_id": "BAT_10_RESIDENCES_A",
+      "plan_num": "10",
+      "nom": "Appartements chercheurs",
+      "confiance": "groupe",
+      "osm": "way/75189472",
+      "osm_nom": "Bâtiment 17 - Logement A",
+      "altitude_sol_m": 0.54,
+      "gouttiere_m": 8.79,
+      "faitage_m": 9.75,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        21.48,
+        -76.04
+      ],
+      "niveaux": [],
+      "alias": [
+        "les appartements chercheurs",
+        "le logement des chercheurs"
+      ]
+    },
+    {
+      "semantic_id": "BAT_10_RESIDENCES_B",
+      "plan_num": "10",
+      "nom": "Appartements chercheurs",
+      "confiance": "groupe",
+      "osm": "way/75175372",
+      "osm_nom": "Bâtiment 18 - Logement B",
+      "altitude_sol_m": 0.78,
+      "gouttiere_m": 8.12,
+      "faitage_m": 8.94,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        -14.23,
+        -115.55
+      ],
+      "niveaux": [],
+      "alias": [
+        "les appartements chercheurs",
+        "le logement des chercheurs"
+      ]
+    },
+    {
+      "semantic_id": "BAT_09_GYMNASE",
+      "plan_num": "09",
+      "nom": "Gymnase",
+      "confiance": "sure",
+      "osm": "way/257931983",
+      "osm_nom": "Bâtiment 08 - Gymnase Champollion",
+      "altitude_sol_m": -1.67,
+      "gouttiere_m": 8.81,
+      "faitage_m": 10.38,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        -215.32,
+        -94.51
+      ],
+      "niveaux": [],
+      "alias": [
+        "la halle des sports",
+        "le sport",
+        "le bâtiment 9"
+      ]
+    },
+    {
+      "semantic_id": "BAT_12_ELISA_LEMONNIER",
+      "plan_num": "12",
+      "nom": "Bâtiment Élisa-Lemonnier",
+      "confiance": "hors_plan",
+      "osm": "way/501280198",
+      "osm_nom": "Bâtiment 4 - Elisa Lemonnier",
+      "altitude_sol_m": 0.28,
+      "gouttiere_m": 9.56,
+      "faitage_m": 11.21,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        -29.2,
+        17.83
+      ],
+      "niveaux": [
+        {
+          "etage": "RDC",
+          "locaux": [
+            {
+              "id": "SALLES_EL_RDC",
+              "nom": "Salles de cours",
+              "type": "salle",
+              "plage": "EL001 et EL002"
+            }
+          ]
+        },
+        {
+          "etage": "1",
+          "locaux": [
+            {
+              "id": "SALLES_EL_1",
+              "nom": "Salles de cours",
+              "type": "salle",
+              "plage": "EL104 à EL112"
+            }
+          ]
+        }
+      ],
+      "alias": [
+        "Élisa Lemonnier",
+        "Lemonnier",
+        "le bâtiment 12"
+      ]
+    },
+    {
+      "semantic_id": "BAT_11_IFMS",
+      "plan_num": "11",
+      "nom": "IFMS — Instituts de Formation aux Métiers de la Santé",
+      "confiance": "hors_plan",
+      "osm": "way/501073453",
+      "osm_nom": "Bâtiment 13 - IFMS",
+      "altitude_sol_m": 0.0,
+      "gouttiere_m": 12.01,
+      "faitage_m": 12.75,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        -66.22,
+        -6.73
+      ],
+      "niveaux": [],
+      "nom_usuel": "l’IFMS",
+      "alias": [
+        "l'IFMS",
+        "la formation santé",
+        "les métiers de la santé",
+        "le bâtiment 11"
+      ]
+    },
+    {
+      "semantic_id": "HORS_PLAN_ATELIER",
+      "plan_num": null,
+      "nom": "Atelier technique",
+      "confiance": "hors_plan",
+      "osm": "way/75159415",
+      "osm_nom": "Bâtiment 12 - Atelier",
+      "altitude_sol_m": 0.6,
+      "gouttiere_m": 5.83,
+      "faitage_m": 7.65,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        -98.5,
+        -4.64
+      ],
+      "niveaux": []
+    },
+    {
+      "semantic_id": "HORS_PLAN_W591409500",
+      "plan_num": null,
+      "nom": "Aile de l’IFMS",
+      "confiance": "hors_plan",
+      "osm": "way/591409500",
+      "osm_nom": null,
+      "altitude_sol_m": -0.05,
+      "gouttiere_m": 6.07,
+      "faitage_m": 11.92,
+      "source_hauteur": "lidar",
+      "a_decouper": true,
+      "centre_m": [
+        -66.29,
+        17.38
+      ],
+      "niveaux": [],
+      "note_plan": "Partage ses nœuds avec le bâtiment 13 — IFMS dans OpenStreetMap (way 501073453) : c’est une aile du même ensemble, deux niveaux, toiture plate."
+    },
+    {
+      "semantic_id": "HORS_PLAN_W257931999",
+      "plan_num": null,
+      "nom": "Volume technique près du bâtiment administratif",
+      "confiance": "hors_plan",
+      "osm": "way/257931999",
+      "osm_nom": null,
+      "altitude_sol_m": 0.36,
+      "gouttiere_m": 3.18,
+      "faitage_m": 3.49,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        95.48,
+        59.21
+      ],
+      "niveaux": [],
+      "note_plan": "Sans nom sur le plan officiel, et sans nom dans OpenStreetMap (empreinte cadastrale de 2010). À 50 m du bâtiment administratif, 3.1 m de haut. Ne lui invente pas d’usage : dis qu’il n’est pas nommé."
+    },
+    {
+      "semantic_id": "BAT_01_PAVILLON_LE_CUBE",
+      "plan_num": "01",
+      "nom": "Le Cube",
+      "confiance": "hors_plan",
+      "osm": "way/75175917",
+      "osm_nom": "Bâtiment 10 - Le Cube",
+      "altitude_sol_m": 0.3,
+      "gouttiere_m": 8.58,
+      "faitage_m": 9.97,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        142.45,
+        132.79
+      ],
+      "niveaux": [
+        {
+          "etage": "RDC",
+          "locaux": [
+            {
+              "id": "CU001",
+              "nom": "Le Cube — salle événementielle",
+              "type": "salle_evenementielle",
+              "code": "CU001"
+            }
+          ]
+        }
+      ],
+      "nom_usuel": "pavillon de garde, entrée place de Verdun",
+      "alias": [
+        "le Cube",
+        "les pavillons de garde",
+        "l'entrée place de Verdun"
+      ]
+    },
+    {
+      "semantic_id": "BAT_01_PAVILLON_LE_LABO",
+      "plan_num": "01",
+      "nom": "Le Labo",
+      "confiance": "hors_plan",
+      "osm": "way/75156816",
+      "osm_nom": "Bâtiment 11 - Le Labo",
+      "altitude_sol_m": 0.33,
+      "gouttiere_m": 8.6,
+      "faitage_m": 9.95,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        162.45,
+        116.45
+      ],
+      "niveaux": [
+        {
+          "etage": "RDC",
+          "locaux": [
+            {
+              "id": "LE_LABO",
+              "nom": "Le Labo — bureaux de l’établissement",
+              "type": "service"
+            }
+          ]
+        },
+        {
+          "etage": "1",
+          "locaux": [
+            {
+              "id": "SALLE_REUNION_LABO",
+              "nom": "Salle de réunion",
+              "type": "salle_reunion"
+            }
+          ]
+        }
+      ],
+      "nom_usuel": "pavillon de garde, entrée place de Verdun",
+      "alias": [
+        "le Labo",
+        "les pavillons de garde"
+      ]
+    },
+    {
+      "semantic_id": "HORS_PLAN_W311208414",
+      "plan_num": null,
+      "nom": "Annexe près de la bibliothèque universitaire",
+      "confiance": "hors_plan",
+      "osm": "way/311208414",
+      "osm_nom": null,
+      "altitude_sol_m": 0.36,
+      "gouttiere_m": 6.5,
+      "faitage_m": 6.5,
+      "source_hauteur": "osm",
+      "a_decouper": false,
+      "centre_m": [
+        96.33,
+        -31.16
+      ],
+      "niveaux": [],
+      "note_plan": "Sans nom sur le plan officiel, et sans nom dans OpenStreetMap (empreinte cadastrale de 2010). À 46 m de la bibliothèque universitaire, 6.1 m de haut. Ne lui invente pas d’usage : dis qu’il n’est pas nommé."
+    },
+    {
+      "semantic_id": "HORS_PLAN_W501073504",
+      "plan_num": null,
+      "nom": "Annexe près du bâtiment multimédia",
+      "confiance": "hors_plan",
+      "osm": "way/501073504",
+      "osm_nom": null,
+      "altitude_sol_m": 0.02,
+      "gouttiere_m": 3.31,
+      "faitage_m": 6.83,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        163.45,
+        75.53
+      ],
+      "niveaux": [],
+      "note_plan": "Sans nom sur le plan officiel, et sans nom dans OpenStreetMap (empreinte cadastrale de 2010). À 39 m du bâtiment multimédia, 6.8 m de haut. Ne lui invente pas d’usage : dis qu’il n’est pas nommé."
+    },
+    {
+      "semantic_id": "HORS_PLAN_W75192357",
+      "plan_num": null,
+      "nom": "Annexe près des résidences universitaires",
+      "confiance": "hors_plan",
+      "osm": "way/75192357",
+      "osm_nom": null,
+      "altitude_sol_m": 0.22,
+      "gouttiere_m": 8.0,
+      "faitage_m": 8.0,
+      "source_hauteur": "osm",
+      "a_decouper": false,
+      "centre_m": [
+        -113.72,
+        -42.03
+      ],
+      "niveaux": [],
+      "note_plan": "Sans nom sur le plan officiel, et sans nom dans OpenStreetMap (empreinte cadastrale de 2010). À 31 m des résidences universitaires, 7.8 m de haut. Ne lui invente pas d’usage : dis qu’il n’est pas nommé."
+    },
+    {
+      "semantic_id": "HORS_PLAN_W75183244",
+      "plan_num": null,
+      "nom": "Annexe près des résidences universitaires",
+      "confiance": "hors_plan",
+      "osm": "way/75183244",
+      "osm_nom": null,
+      "altitude_sol_m": -0.41,
+      "gouttiere_m": 2.93,
+      "faitage_m": 3.66,
+      "source_hauteur": "lidar",
+      "a_decouper": false,
+      "centre_m": [
+        -122.17,
+        -56.19
+      ],
+      "niveaux": [],
+      "note_plan": "Sans nom sur le plan officiel, et sans nom dans OpenStreetMap (empreinte cadastrale de 2010). À 41 m des résidences universitaires, 4.1 m de haut. Ne lui invente pas d’usage : dis qu’il n’est pas nommé."
+    },
+    {
+      "semantic_id": "HORS_PLAN_W501073428",
+      "plan_num": null,
+      "nom": "Volume technique près de la bibliothèque universitaire",
+      "confiance": "hors_plan",
+      "osm": "way/501073428",
+      "osm_nom": null,
+      "altitude_sol_m": 0.25,
+      "gouttiere_m": 2.5,
+      "faitage_m": 2.5,
+      "source_hauteur": "osm",
+      "a_decouper": false,
+      "centre_m": [
+        63.91,
+        -24.01
+      ],
+      "niveaux": [],
+      "note_plan": "Sans nom sur le plan officiel, et sans nom dans OpenStreetMap (empreinte cadastrale de 2010). À 26 m de la bibliothèque universitaire, 2.2 m de haut. Ne lui invente pas d’usage : dis qu’il n’est pas nommé."
+    },
+    {
+      "semantic_id": "HORS_PLAN_W75157419",
+      "plan_num": null,
+      "nom": "Annexe près du bâtiment Élisa-Lemonnier",
+      "confiance": "hors_plan",
+      "osm": "way/75157419",
+      "osm_nom": null,
+      "altitude_sol_m": 0.11,
+      "gouttiere_m": 8.0,
+      "faitage_m": 8.0,
+      "source_hauteur": "osm",
+      "a_decouper": false,
+      "centre_m": [
+        -44.63,
+        30.77
+      ],
+      "niveaux": [],
+      "note_plan": "Sans nom sur le plan officiel, et sans nom dans OpenStreetMap (empreinte cadastrale de 2010). À 20 m du bâtiment Élisa-Lemonnier, 7.9 m de haut. Ne lui invente pas d’usage : dis qu’il n’est pas nommé."
+    },
+    {
+      "semantic_id": "HORS_PLAN_W75184086",
+      "plan_num": null,
+      "nom": "Volume technique près du Labo",
+      "confiance": "hors_plan",
+      "osm": "way/75184086",
+      "osm_nom": null,
+      "altitude_sol_m": 0.22,
+      "gouttiere_m": 2.0,
+      "faitage_m": 2.0,
+      "source_hauteur": "osm",
+      "a_decouper": false,
+      "centre_m": [
+        177.12,
+        59.3
+      ],
+      "niveaux": [],
+      "note_plan": "Sans nom sur le plan officiel, et sans nom dans OpenStreetMap (empreinte cadastrale de 2010). À 59 m du Labo, 1.8 m de haut. Ne lui invente pas d’usage : dis qu’il n’est pas nommé."
+    }
+  ],
+  "a_trancher": [
+    "05 — Bâtiment B : quel volume sur le terrain ?",
+    "11 — Université pour tous : lequel des quatre candidats ?",
+    "Les quatre bâtiments OSM hors plan sont-ils du campus, ou d'un site voisin ?"
+  ]
+}

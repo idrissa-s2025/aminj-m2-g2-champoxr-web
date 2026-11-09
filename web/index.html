@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Champollion · socle web immersif</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+  { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+  } }
+  </script>
+</head>
+<body>
+  <canvas id="scene"></canvas>
+
+  <header>
+    <strong>Campus Champollion</strong>
+    <span>socle AMINJ M2 · équipe web immersif</span>
+  </header>
+
+  <aside id="fiche" hidden>
+    <h2 id="fiche-nom"></h2>
+    <p id="fiche-plan"></p>
+    <ul id="fiche-niveaux"></ul>
+  </aside>
+
+  <section id="agent">
+    <div id="agent-reponse">Cliquez un bâtiment, puis posez une question.</div>
+    <form id="agent-form">
+      <input id="agent-question" placeholder="Votre question à l'agent" autocomplete="off">
+      <button>Envoyer</button>
+    </form>
+  </section>
+
+  <div id="chargement">Chargement de la maquette…</div>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
