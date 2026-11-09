@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Campus Champollion · socle web immersif</title>
+  <title>INU Champollion · Campus 3D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap">
   <link rel="stylesheet" href="style.css">
   <script type="importmap">
   { "imports": {
@@ -14,27 +16,83 @@
 </head>
 <body>
   <canvas id="scene"></canvas>
+  <div id="etiquettes"></div>
 
-  <header>
-    <strong>Campus Champollion</strong>
-    <span>socle AMINJ M2 · équipe web immersif</span>
+  <!-- Bandeau -->
+  <header id="bandeau">
+    <a class="marque" href="#" id="accueil-logo" aria-label="Retour à l'accueil">
+      <img src="img/logo_uc_blanc.png" alt="">
+      <span><strong>INU Champollion</strong><small>Campus 3D · Albi</small></span>
+    </a>
+    <label class="souhait">
+      <span>Je souhaite</span>
+      <select id="souhait">
+        <option value="explorer">Explorer le campus en 3D</option>
+        <option value="trouver">Trouver un bâtiment</option>
+        <option value="agent">Poser une question à l'agent</option>
+      </select>
+    </label>
+    <button class="rond" id="aide-bouton" aria-label="Aide">?</button>
   </header>
 
-  <aside id="fiche" hidden>
-    <h2 id="fiche-nom"></h2>
-    <p id="fiche-plan"></p>
-    <ul id="fiche-niveaux"></ul>
+  <!-- Panneau de gauche -->
+  <aside id="panneau">
+    <button class="retour" id="retour"><span aria-hidden="true">⌂</span> Retour à l'accueil</button>
+    <section class="carte" id="carte">
+      <header>
+        <h2 id="carte-titre">Le campus Champollion</h2>
+        <button class="replier" id="replier" aria-label="Replier">⌃</button>
+      </header>
+      <div class="corps" id="carte-corps">
+        <p>Bienvenue sur la maquette 3D du campus d'Albi.</p>
+        <p>Cliquez un bâtiment ou son étiquette pour afficher ses étages et ses locaux, ou choisissez
+          « Trouver un bâtiment » dans le menu.</p>
+      </div>
+    </section>
+    <section class="carte" id="liste" hidden>
+      <header><h2>Les bâtiments</h2></header>
+      <ul class="corps" id="liste-batiments"></ul>
+    </section>
   </aside>
 
-  <section id="agent">
-    <div id="agent-reponse">Cliquez un bâtiment, puis posez une question.</div>
-    <form id="agent-form">
-      <input id="agent-question" placeholder="Votre question à l'agent" autocomplete="off">
-      <button>Envoyer</button>
-    </form>
+  <!-- Navigation entre bâtiments -->
+  <nav id="defile">
+    <button id="precedent" aria-label="Bâtiment précédent">‹</button>
+    <span id="defile-nom">Le campus</span>
+    <button id="suivant" aria-label="Bâtiment suivant">›</button>
+  </nav>
+
+  <!-- Agent -->
+  <button id="agent-bouton" class="agent-bouton">Agent du campus</button>
+  <section id="agent" hidden>
+    <header><strong>Agent du campus</strong><small>intelligence artificielle</small>
+      <button class="fermer" id="agent-fermer" aria-label="Fermer">×</button></header>
+    <div id="agent-fil"><p class="msg agent">Bonjour. Sélectionnez un bâtiment, puis posez votre question.</p></div>
+    <form id="agent-form"><input id="agent-question" placeholder="Votre question" autocomplete="off"><button>Envoyer</button></form>
   </section>
 
-  <div id="chargement">Chargement de la maquette…</div>
+  <!-- Aide -->
+  <dialog id="aide">
+    <h2>Se déplacer</h2>
+    <ul>
+      <li><b>Tourner</b> : clic gauche maintenu</li>
+      <li><b>Zoomer</b> : molette</li>
+      <li><b>Se déplacer</b> : clic droit maintenu</li>
+      <li><b>Choisir un bâtiment</b> : clic sur le bâtiment ou sur son étiquette</li>
+    </ul>
+    <p class="discret">Données : OpenStreetMap (ODbL), IGN LiDAR HD et orthophotographie, plan de l'université.
+      Socle du Master 2 AMINJ.</p>
+    <form method="dialog"><button>Compris</button></form>
+  </dialog>
+
+  <!-- Chargement -->
+  <div id="chargement">
+    <img src="img/logo_uc_blanc.png" alt="">
+    <div class="points"><i></i><i></i><i></i></div>
+    <p>Merci de patienter, la visite du campus Champollion commence dans un instant…</p>
+    <p class="discret" id="progression">0 %</p>
+  </div>
+
   <script type="module" src="main.js"></script>
 </body>
 </html>
