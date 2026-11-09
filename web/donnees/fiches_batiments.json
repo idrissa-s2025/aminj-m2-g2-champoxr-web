@@ -1,0 +1,356 @@
+{
+  "avertissement": "Fiches rédigées à partir des sources listées en fin de fichier. Elles sont transmises à l'agent comme connaissances. À vérifier et compléter par le groupe ; ce qui n'y figure pas, l'agent ne le sait pas.",
+  "campus": {
+    "nom": "Campus Lapérouse, INU Champollion (Albi)",
+    "role": "Site principal et siège de l'Institut national universitaire Jean-François Champollion.",
+    "histoire": "Le campus occupe l'ancienne caserne Lapérouse, qui abrita le 15e régiment d'infanterie, puis le 22e RIMa et l'état-major de la brigade parachutiste. L'université arrive à Albi en octobre 1990 avec un premier DEUG de droit installé au lycée Bellevue, dans le cadre du plan Université 2000. Le site militaire reconverti est inauguré le 7 février 1994. En 2002 naît le Centre universitaire de formation et de recherche du Nord-Est Midi-Pyrénées ; le décret du 18 novembre 2015 lui donne son nom et son statut actuels d'institut national universitaire.",
+    "reperes": [
+      "Place de Verdun, Albi (Tarn)",
+      "Trois sites : Albi (siège), Castres, Rodez",
+      "Environ 3 800 étudiants",
+      "Ancienne caserne Lapérouse, campus inauguré le 7 février 1994"
+    ]
+  },
+  "fiches": [
+    {
+      "semantic_id": "BAT_01_PAVILLON_LE_CUBE",
+      "titre": "Le Cube",
+      "role": "Espace événementiel du campus, dans un ancien pavillon de garde de la caserne.",
+      "histoire": "Les deux pavillons encadrent l'entrée historique de la caserne, place de Verdun : ils gardaient le portail du 15e régiment d'infanterie. Ce sont les plus anciennes constructions encore debout du campus. Restés longtemps inoccupés, ils ont été réhabilités en 2017 ; celui-ci est devenu Le Cube.",
+      "pedagogie": [
+        "Accueil de séminaires, de soutenances et d'ateliers hors amphithéâtre",
+        "Format modulable, adapté aux petits groupes"
+      ],
+      "services": [
+        "Réservable pour les manifestations étudiantes et institutionnelles",
+        "Lieu d'expositions et de rencontres ouvertes"
+      ],
+      "reperes": [
+        "Ancien pavillon de garde, entrée place de Verdun",
+        "Réhabilité en 2017"
+      ]
+    },
+    {
+      "semantic_id": "BAT_01_PAVILLON_LE_LABO",
+      "titre": "Le Labo",
+      "role": "Second pavillon de garde, réhabilité en bureaux de l'établissement.",
+      "histoire": "Jumeau du Cube, ce pavillon gardait l'autre côté du portail de la caserne Lapérouse. Réhabilité lui aussi en 2017, il a été converti en bureaux et accueille des services de l'établissement.",
+      "pedagogie": [],
+      "services": [
+        "Bureaux de services de l'établissement",
+        "Accueil sur rendez-vous"
+      ],
+      "reperes": [
+        "Ancien pavillon de garde, entrée place de Verdun",
+        "Réhabilité en 2017"
+      ]
+    },
+    {
+      "semantic_id": "BAT_02_MULTIMEDIA",
+      "titre": "Bâtiment multimédia",
+      "role": "Auditoriums, ateliers informatiques et service informatique du campus.",
+      "histoire": "Construite en 2004-2005, la Maison Multimédia est le premier bâtiment neuf du campus pensé pour l'audiovisuel et le numérique. Son auditorium principal porte le nom de Michel Cohou.",
+      "pedagogie": [
+        "Auditorium 1 Michel Cohou et Auditorium 2",
+        "Ateliers informatiques MM001 à MM005, au rez-de-chaussée",
+        "Ateliers informatiques MM101 à MM103, au premier étage",
+        "Salles équipées pour la captation et le travail sur l'image"
+      ],
+      "services": [
+        "DSIUN, direction du système d'information et du numérique, premier étage",
+        "Assistance sur les comptes, le réseau et les postes de travail",
+        "Salles ouvertes en libre accès hors créneaux de cours"
+      ],
+      "reperes": [
+        "Livrée en 2005",
+        "Numéro 2 sur le plan du campus",
+        "Appelée aussi « Maison Multimédia »"
+      ]
+    },
+    {
+      "semantic_id": "BAT_03_JEAN_JAURES",
+      "titre": "Bâtiment Jean-Jaurès",
+      "role": "Principal bâtiment d'enseignement : droit, lettres et sciences humaines.",
+      "histoire": "Ancien bâtiment militaire reconverti à l'ouverture du campus en 1994, il s'appelait alors « droit-lettres » avant de prendre le nom de Jean Jaurès, normalien, agrégé de philosophie et député du Tarn. C'est le cœur historique de l'enseignement sur le site.",
+      "pedagogie": [
+        "Amphithéâtre G. de Cunh et amphithéâtre Olympe de Gouges",
+        "Salle Portalis",
+        "Salles de cours JJ001 à JJ027, au rez-de-chaussée",
+        "Salles JJ106 à JJ124 au premier étage, JJ215 à JJ220 au deuxième",
+        "Maison de la recherche au troisième étage"
+      ],
+      "services": [
+        "Salles banalisées ouvertes à toutes les formations",
+        "Accueil des équipes de recherche au dernier niveau"
+      ],
+      "reperes": [
+        "Bâtiment militaire reconverti en 1994",
+        "Ancien nom : bâtiment droit-lettres"
+      ]
+    },
+    {
+      "semantic_id": "BAT_03_JEAN_JAURES_EXTENSION",
+      "titre": "Extension du bâtiment Jean-Jaurès",
+      "role": "Bâtiment pédagogique neuf, adossé au Jean-Jaurès.",
+      "histoire": "Construit entre 2021 et 2023 à l'emplacement d'anciens bâtiments militaires démolis, et livré en février 2023. C'est la dernière opération d'ampleur menée sur le campus, et le seul bâtiment franchement contemporain de l'ensemble.",
+      "pedagogie": [
+        "Salles de cours et de travaux dirigés supplémentaires",
+        "Continuité directe avec les salles JJ du bâtiment historique"
+      ],
+      "services": [
+        "Circulations reliant l'extension au Jean-Jaurès"
+      ],
+      "reperes": [
+        "Chantier 2021-2023, livré en février 2023",
+        "Construit après démolition de bâtiments militaires"
+      ]
+    },
+    {
+      "semantic_id": "BAT_04_ADMINISTRATIF",
+      "titre": "Bâtiment administratif",
+      "role": "Direction, scolarité et services centraux de l'établissement.",
+      "histoire": "C'est le point d'entrée administratif du campus : tout ce qui touche à l'inscription, à la vie étudiante et au fonctionnement de l'établissement se traite ici, du rez-de-chaussée au deuxième étage.",
+      "pedagogie": [
+        "Salle du conseil, au premier étage",
+        "Service de la formation continue"
+      ],
+      "services": [
+        "Accueil général, au rez-de-chaussée",
+        "Scolarités et relations internationales",
+        "Vie étudiante, pôle santé et social",
+        "Orientation et insertion professionnelle, premier étage",
+        "Direction, communication, ressources humaines et service financier, deuxième étage"
+      ],
+      "reperes": [
+        "Premier arrêt pour toute démarche administrative",
+        "Trois niveaux, du guichet à la direction"
+      ]
+    },
+    {
+      "semantic_id": "BAT_05_EMILE_BOREL",
+      "titre": "Bâtiment Émile-Borel",
+      "role": "Pôle sciences : amphithéâtres, salles de cours, CFA et recherche.",
+      "histoire": "Construit au début des années 2000 avec la bibliothèque, dans la première vague d'agrandissement du campus. Il porte le nom d'Émile Borel (1871-1956), mathématicien né à Saint-Affrique, l'un des fondateurs de la théorie de la mesure et un pionnier de la théorie des jeux.",
+      "pedagogie": [
+        "Amphithéâtres Henri Poincaré, Edmond Rostand et Irène Joliot-Curie",
+        "Salles de cours BO002 à BO042, au rez-de-chaussée",
+        "Salles BO0102 à BO0114, au premier étage",
+        "CFA et salles de cours au deuxième étage"
+      ],
+      "services": [
+        "Maison de la recherche au troisième étage",
+        "Accueil des apprentis et de l'alternance"
+      ],
+      "reperes": [
+        "Trois amphithéâtres, les plus nombreux du campus",
+        "Émile Borel, mathématicien né à Saint-Affrique"
+      ]
+    },
+    {
+      "semantic_id": "BAT_06_BIBLIOTHEQUE",
+      "titre": "Bibliothèque universitaire",
+      "role": "Bibliothèque du campus d'Albi : documentation, travail et ressources en ligne.",
+      "histoire": "Une première bibliothèque ouvre au début des années 2000, en même temps que le bâtiment des sciences. Elle est entièrement reconstruite en 2017, dans la même opération qui réhabilite les pavillons de garde.",
+      "pedagogie": [
+        "Environ 60 000 titres, dont près de 80 % en libre accès",
+        "117 abonnements de périodiques",
+        "Testothèque : 52 tests psychotechniques",
+        "Fonds jeux : 46 titres",
+        "Fonds insertion et emploi : plus de 800 titres"
+      ],
+      "services": [
+        "Places de travail individuel au rez-de-chaussée",
+        "Salles de travail en groupe au premier étage",
+        "Prêt, prêt entre bibliothèques, accès aux ressources numériques",
+        "Formation à la recherche documentaire"
+      ],
+      "reperes": [
+        "Reconstruite en 2017",
+        "Réseau du service commun de documentation de l'INU Champollion"
+      ]
+    },
+    {
+      "semantic_id": "BAT_07_RESTAURANT_UNIVERSITAIRE",
+      "titre": "Restaurant universitaire",
+      "role": "Restauration du campus, gérée par le Crous de Toulouse-Occitanie.",
+      "histoire": "Le restaurant et sa cafétéria sont le principal lieu de restauration du campus, fréquenté par toutes les filières à la mi-journée.",
+      "pedagogie": [],
+      "services": [
+        "Repas complet au tarif social étudiant",
+        "Cafétéria pour la restauration rapide et les pauses",
+        "Paiement par la carte étudiante",
+        "Gestion Crous de Toulouse-Occitanie"
+      ],
+      "reperes": [
+        "Restaurant et cafétéria au rez-de-chaussée",
+        "Tarif social national appliqué aux étudiants"
+      ]
+    },
+    {
+      "semantic_id": "BAT_08_PASCAL_AMBIC",
+      "titre": "Bâtiment Pascal(e) Ambic",
+      "role": "Maison de la vie étudiante : associations, culture, sport, santé et solidarité.",
+      "histoire": "Bâtiment de la vie étudiante hors cours : foyer, associations, radio étudiante, épicerie solidaire et infirmerie y sont regroupés. L'origine du nom porté sur le plan n'est pas documentée dans les sources publiques consultées.",
+      "pedagogie": [
+        "Salles de cours au premier étage",
+        "Ateliers portés par les associations et l'action culturelle"
+      ],
+      "services": [
+        "Foyer étudiant, au rez-de-chaussée",
+        "Action culturelle et bureau des associations",
+        "Mission sport",
+        "Antenne Crous et infirmerie",
+        "AFEV, engagement étudiant (1er étage)",
+        "Épicerie solidaire",
+        "Radio Champo, la radio du campus"
+      ],
+      "reperes": [
+        "Le point de chute de la vie associative",
+        "Infirmerie et antenne Crous sur place"
+      ]
+    },
+    {
+      "semantic_id": "BAT_09_GYMNASE",
+      "titre": "Gymnase",
+      "role": "Équipement sportif du campus.",
+      "histoire": "Inauguré le 5 mars 2012, le gymnase permet la pratique du sport universitaire sur le site même du campus.",
+      "pedagogie": [
+        "Créneaux d'enseignement du sport universitaire",
+        "Pratique encadrée dans le cadre des unités d'enseignement libres"
+      ],
+      "services": [
+        "Créneaux du service des sports, ouverts à tous les étudiants",
+        "Accueil des associations sportives du campus",
+        "Salle omnisports"
+      ],
+      "reperes": [
+        "Inauguré le 5 mars 2012"
+      ]
+    },
+    {
+      "semantic_id": "BAT_10_RESIDENCES_ASTROLABE",
+      "titre": "Résidence L’Astrolabe",
+      "role": "Résidence étudiante du Crous, à l'écart du campus, derrière le gymnase.",
+      "histoire": "Elle porte le nom de L'Astrolabe, l'une des deux frégates de l'expédition de Lapérouse, le navigateur albigeois qui a aussi donné son nom à la caserne devenue campus.",
+      "pedagogie": [],
+      "services": [
+        "68 logements de 16 à 25 m²",
+        "13 rue de la Poudrière, Albi",
+        "Desservie par la ligne H",
+        "Gestion Crous de Toulouse-Occitanie",
+        "Demande par le Dossier social étudiant"
+      ],
+      "reperes": [
+        "68 logements",
+        "Nom emprunté à la frégate de Lapérouse",
+        "Derrière le gymnase, la plus éloignée des deux résidences"
+      ]
+    },
+    {
+      "semantic_id": "BAT_10_RESIDENCES",
+      "titre": "Résidence étudiante, côté IFMS",
+      "role": "Résidence étudiante du Crous, côté IFMS.",
+      "histoire": "Résidence étudiante située sur l'emprise même du campus, héritée de l'ancien site militaire.",
+      "pedagogie": [],
+      "services": [
+        "Logements conventionnés Crous",
+        "Attribution par le Dossier social étudiant",
+        "À quelques minutes à pied des amphithéâtres"
+      ],
+      "reperes": [
+        "Gestion Crous de Toulouse-Occitanie",
+        "Côté IFMS",
+        "La plus proche des salles de cours"
+      ]
+    },
+    {
+      "semantic_id": "BAT_10_RESIDENCES_A",
+      "titre": "Appartements chercheurs",
+      "role": "Logements réservés aux chercheurs et aux invités, rue Franchet d'Espèrey, face au restaurant universitaire.",
+      "histoire": "Petits bâtiments distincts des résidences étudiantes : ils accueillent les chercheurs de passage, les invités d'un colloque ou les enseignants en mission.",
+      "pedagogie": [],
+      "services": [
+        "Logement de courte et moyenne durée",
+        "Accueil des chercheurs invités"
+      ],
+      "reperes": [
+        "Rue Franchet d'Espèrey, face au restaurant universitaire",
+        "À ne pas confondre avec les résidences étudiantes"
+      ]
+    },
+    {
+      "semantic_id": "BAT_10_RESIDENCES_B",
+      "titre": "Appartements chercheurs",
+      "role": "Logements réservés aux chercheurs et aux invités, rue Franchet d'Espèrey, face au restaurant universitaire.",
+      "histoire": "Petits bâtiments distincts des résidences étudiantes : ils accueillent les chercheurs de passage, les invités d'un colloque ou les enseignants en mission.",
+      "pedagogie": [],
+      "services": [
+        "Logement de courte et moyenne durée",
+        "Accueil des chercheurs invités"
+      ],
+      "reperes": [
+        "Rue Franchet d'Espèrey, face au restaurant universitaire",
+        "À ne pas confondre avec les résidences étudiantes"
+      ]
+    },
+    {
+      "semantic_id": "BAT_11_IFMS",
+      "titre": "IFMS, Instituts de formation aux métiers de la santé",
+      "role": "Formations paramédicales, voisines du campus universitaire.",
+      "histoire": "L'IFMS forme les professionnels paramédicaux du bassin albigeois. Il est distinct de l'INU Champollion mais partage son voisinage immédiat, et une partie des parcours étudiants passe de l'un à l'autre.",
+      "pedagogie": [
+        "Formations en soins infirmiers et aide-soignant",
+        "Alternance entre enseignement théorique et stages hospitaliers"
+      ],
+      "services": [
+        "Scolarité propre à l'institut",
+        "Proximité immédiate des services du campus"
+      ],
+      "reperes": [
+        "Bâtiment 13 sur le relevé du site",
+        "Structure partenaire, hors périmètre universitaire"
+      ]
+    },
+    {
+      "semantic_id": "BAT_12_ELISA_LEMONNIER",
+      "titre": "Bâtiment Élisa-Lemonnier",
+      "role": "Bâtiment d'enseignement, ancien bâtiment militaire reconverti.",
+      "histoire": "C'est, avec le Jean-Jaurès, l'un des deux bâtiments militaires reconvertis à l'ouverture du campus en 1994. Il porte le nom d'Élisa Lemonnier (1805-1865), qui fonde en 1862 la première école professionnelle de jeunes filles en France et ouvre l'enseignement technique aux femmes.",
+      "pedagogie": [
+        "Salles de cours et de travaux dirigés",
+        "Accueil de formations transversales"
+      ],
+      "services": [
+        "Salles banalisées, mutualisées entre départements"
+      ],
+      "reperes": [
+        "Bâtiment militaire reconverti en 1994",
+        "Élisa Lemonnier, pionnière de l'enseignement professionnel féminin"
+      ]
+    },
+    {
+      "semantic_id": "HORS_PLAN_ATELIER",
+      "titre": "Atelier technique",
+      "role": "Atelier technique : logistique, maintenance et entretien du campus.",
+      "histoire": "Bâtiment de service hérité de l'emprise militaire, sans accueil d'étudiants : il abrite les équipes qui interviennent sur les salles, les réseaux et les extérieurs.",
+      "pedagogie": [],
+      "services": [
+        "Équipe technique et logistique du campus",
+        "Maintenance des bâtiments et des espaces extérieurs"
+      ],
+      "reperes": [
+        "Bâtiment 12 sur le relevé du site",
+        "Bâtiment de service, sans accueil du public"
+      ]
+    }
+  ],
+  "sources": [
+    "Wikipédia, Institut national universitaire Jean-François-Champollion",
+    "ARCHAMPO, Le site Lapérouse à Albi (blogs.univ-jfc.fr)",
+    "Décret n° 2015-1496 du 18 novembre 2015 (Légifrance)",
+    "Plan du campus INU Champollion",
+    "Service commun de documentation, B.U. d'Albi",
+    "Crous de Toulouse-Occitanie, résidence L'Astrolabe",
+    "Campus France, fiche INU Champollion"
+  ]
+}

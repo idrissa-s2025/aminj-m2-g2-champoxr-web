@@ -103,6 +103,9 @@ redimensionner();
 // ------------------------------------------------------------------ donnees
 const semantique = await (await fetch('donnees/campus_semantique.json')).json();
 const batiments = new Map(semantique.batiments.map((b) => [b.semantic_id, b]));
+// Les connaissances de l'agent : une fiche par batiment (role, histoire, pedagogie, services).
+const connaissances = await (await fetch('donnees/fiches_batiments.json')).json();
+const fiches = new Map(connaissances.fiches.map((f) => [f.semantic_id, f]));
 
 // ------------------------------------------------------------------ maquette
 const manager = new THREE.LoadingManager();
@@ -323,7 +326,9 @@ function afficherFiche(b) {
   $('carte-titre').textContent = affiche(b.nom);
   const niveaux = (b.niveaux || []).map((n) => `<h3>${n.etage === 'RDC' ? 'Rez-de-chaussée' : 'Étage ' + n.etage}</h3>
     <ul>${(n.locaux || []).map((l) => `<li>${l.nom}${l.code ? ' (' + l.code + ')' : ''}</li>`).join('')}</ul>`).join('');
+  const f = fiches.get(b.semantic_id);
   $('carte-corps').innerHTML = (b.plan_num ? `<span class="num">Bâtiment ${b.plan_num}</span>` : '') +
+    (f ? `<p><b>${f.role}</b></p><p>${f.histoire}</p>` : '') +
     (niveaux || '<p>Aucun local renseigné pour ce bâtiment.</p>');
   $('carte').classList.remove('replie');
 }
@@ -420,7 +425,10 @@ $('agent-form').addEventListener('submit', async (e) => {
   message(question, 'moi');
   const attente = message('…', 'agent');
   const b = selection && batiments.get(selection);
-  const contexte = b ? JSON.stringify({ batiment: b.nom, plan: b.plan_num, niveaux: b.niveaux }) : 'Aucun bâtiment sélectionné.';
+  // Contexte transmis a l'agent : le campus, puis le batiment selectionne et sa fiche.
+  const campus = `${connaissances.campus.nom}. ${connaissances.campus.role}`;
+  const contexte = b ? JSON.stringify({ campus, batiment: b.nom, plan: b.plan_num, niveaux: b.niveaux, fiche: fiches.get(b.semantic_id) || null })
+    : JSON.stringify({ campus, histoire: connaissances.campus.histoire, reperes: connaissances.campus.reperes, batiment: 'aucun bâtiment sélectionné' });
   try {
     const r = await fetch(`${RELAIS}/api/chat`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question, contexte }) });

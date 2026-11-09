@@ -18,6 +18,7 @@ portail, pas une formation.
 | Ciel, nuages, ombres, points de téléportation au pied des bâtiments | `web/main.js` | fourni |
 | Sources Blender (hologramme et maquette, version de travail du 23/09) | `blender/` | fourni |
 | Sémantique du campus : bâtiments, étages, locaux | `web/donnees/campus_semantique.json` | fourni, partagé avec G1 |
+| Fiches des bâtiments (rôle, histoire, pédagogie, services) | `web/donnees/fiches_batiments.json` | fourni, affiché et transmis à l'agent, partagé avec G1 |
 | Scène three.js, vue orbitale, sélection, fiche du bâtiment | `web/main.js` | fourni |
 | Agent par le relais (texte) | `web/main.js` et `relais/` | fourni, fonction didactique à écrire |
 | Traces xAPI simplifiées | `tracer()` dans `web/main.js` | fourni, verbes à choisir |
@@ -60,7 +61,9 @@ un contexte, le relais ajoute la clé et les consignes, puis appelle OpenAI.
 | Clé et réglages (`OPENAI_API_KEY`, `OPENAI_MODEL`, `MAX_APPELS_JOUR`) | `relais/.env`, copié de `relais/env.exemple` | coller la clé ; jamais dans Git |
 | **Instruction** de l'agent (message système) | `relais/consignes_agent.md` | **à réécrire** : rôle, ce qu'il dit, ce qu'il ne dit jamais, forme |
 | Côté page : envoi de la question et affichage de la réponse | `web/main.js`, bloc « Agent » (`fetch('/api/chat')`) | brancher la voix, l'incarnation |
-| **Connaissances** transmises : nom, numéro de plan, niveaux du bâtiment sélectionné | `web/donnees/campus_semantique.json`, contexte construit dans `web/main.js` (`const contexte`) | enrichir ou filtrer |
+| **Connaissances** : bâtiment, étages, locaux | `web/donnees/campus_semantique.json` | enrichir ou filtrer |
+| **Connaissances** : fiche du bâtiment et présentation du campus | `web/donnees/fiches_batiments.json` | vérifier, compléter |
+| Assemblage du contexte envoyé à l'agent | `const contexte` dans `web/main.js`, bloc « Agent » | choisir ce que l'agent reçoit |
 | Traces xAPI envoyées au relais | `tracer()` dans `web/main.js` | choisir les verbes |
 | Journal des échanges et des traces | `relais/journal/*.jsonl` | lire pour l'évaluation et le débriefing |
 
